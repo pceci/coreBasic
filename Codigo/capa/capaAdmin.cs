@@ -24,7 +24,7 @@ namespace coreBasic.Codigo
             l.Add(db.GetParameter("err_StackTrace", err_StackTrace));
             l.Add(db.GetParameter("err_fecha", err_fecha));
             l.Add(db.GetParameter("err_tipo", err_tipo));
-            int result = db.ExecuteNonQuery("LogRegistro.spError", l);
+            int result = db.ExecuteNonQuery("seg.spError", l);
             return result > 0;
         }
         public static DataSet GestiónRol(int? rol_codRol, string rol_Nombre, string filtro, string accion)
@@ -35,7 +35,7 @@ namespace coreBasic.Codigo
             l.Add(db.GetParameter("rol_Nombre", rol_Nombre));
             l.Add(db.GetParameter("filtro", filtro));
             l.Add(db.GetParameter("accion", accion));
-            DataSet ds = db.GetDataSet("Seguridad.spGestionRol", l);
+            DataSet ds = db.GetDataSet("seg.spGestionRol", l);
             return ds;
         }
         public static List<cRol> RecuperarTodasRoles(string pFiltro)
