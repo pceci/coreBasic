@@ -132,8 +132,8 @@ namespace coreBasic.Codigo
                     {
                         cmd.Parameters.AddRange(parameters.ToArray());
                     }
-                   SqlDataReader ds = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                    return ds;
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    return dr;
                 }
             }
             catch (Exception ex)
@@ -141,6 +141,31 @@ namespace coreBasic.Codigo
                 Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, procedureName, parameters, commandType);
                 //LogException("Failed to GetDataReader for " + procedureName, ex, parameters);
                 //throw;
+            }
+
+            return null;
+        }
+        public DataTable GetDataTable(string procedureName, List<SqlParameter> parameters, CommandType commandType = CommandType.StoredProcedure)
+        {
+            try
+            {
+                using (SqlConnection connection = this.GetConnection())
+                {
+                    SqlCommand cmd = this.GetCommand(connection, procedureName, commandType);
+
+                    if (parameters != null && parameters.Count > 0)
+                    {
+                        cmd.Parameters.AddRange(parameters.ToArray());
+                    }
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    DataTable dt = new DataTable();
+                    dt.Load(dr);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, procedureName, parameters, commandType);
             }
 
             return null;
@@ -166,7 +191,7 @@ namespace coreBasic.Codigo
             }
             catch (Exception ex)
             {
-                 Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, procedureName, parameters, commandType);
+                Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, procedureName, parameters, commandType);
                 //LogException("Failed to GetDataReader for " + procedureName, ex, parameters);
                 //throw;
             }

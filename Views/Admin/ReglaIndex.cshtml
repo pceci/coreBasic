@@ -1,0 +1,153 @@
+@{
+    ViewData["Title"] = "Admin";
+}
+@section Scripts{
+ <script src="~/js/admin/gestionreglas.js?n=2" type="text/javascript"></script>
+ }
+<h2>Regla</h2>
+    <div id="divVentanaMensajes" class="divVentanaMensajesRegla">
+
+        <p id="pMensaje">
+        </p>
+        <br />
+    </div>
+@{
+    string resultado = string.Empty;
+     List<coreBasic.Entities.cListaCheck> listaChecks = coreBasic.Codigo.capaAdmin.RecuperarTodasReglasPorNivel(); 
+     if (listaChecks != null)
+     {
+           resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(coreBasic.Codigo.Serializador.SerializarAJson( listaChecks)) + "\" />";
+     }
+     WriteLiteral(resultado);
+}
+    <div class="contenedorGeneralRegla">
+        <table>
+            <tr>
+                <td >
+                   <label id="lblRegla" >Regla:</label>
+                </td>
+                <td colspan="5">
+                    &nbsp;
+                    <div id="divComboRegla" style="float: left">
+                    </div>
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <label id="lblNombreRegla" >Descripción:</label>
+                </td>
+                <td>
+                    <input type="text" id="txtNombreReglaInput" class="anchoControlRegla" maxlength="255" />
+                </td>
+                <td>
+                </td>
+                <td >
+                    &nbsp;
+                    <label id="lblPalabraClave">Clave:</label>
+                </td>
+                <td>
+                    <input type="text" id="txtPalabraClaveInput" class="anchoControlRegla txtPalabraClaveInputRegla" maxlength="50" />
+                    &nbsp;
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    &nbsp;
+                    <label id="lblContenida" >Contenida en:</label>
+                </td>
+                <td>
+                    <div id='divCombo' class="ComboRegla">
+                    </div>
+                </td>
+                <td colspan="4">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    &nbsp;
+                    <label ID="lblAcciones"  Font-Size="Small" Font-Underline="True">Acciones:</label>
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <table>
+                        <tr>
+                            <td>
+                            </td>
+                            <td style="border: thin ridge">
+                                <label id="lblActiva" width="80px">Activa</label>
+                            </td>
+                            <td  style="border: thin ridge">
+                                <label ID="lblAgregar"  width="80px">Agregar</label>
+                            </td>
+                            <td  style="border: thin ridge">
+                                <label ID="lblEditar" width="80px">Editar</label>
+                            </td>
+                            <td  style="border: thin ridge">
+                                <label id="lblEliminar"   width="80px">Eliminar</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  style="vertical-align: middle">
+                                &nbsp;
+                                <label id="lblSoportadas" >Soportadas</label>
+                                &nbsp;&nbsp;
+                            </td>
+                            <td  style="border-style: groove">
+                                 <input type="checkbox" id="CheckBoxSoportadasActiva" runat="server" Checked="true" Enabled="False" />
+                            </td>
+                            <td  style="border-style: groove">
+                                  <input type="checkbox" id="CheckBoxSoportadasAgregar"  />
+                            </td>
+                            <td style="border-style: groove">
+                                <input type="checkbox" id="CheckBoxSoportadasEditar" />
+                            </td>
+                            <td style="border-style: groove">
+                               <input type="checkbox" id="CheckBoxSoportadasEliminar"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p>
+                    </p>
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="styleBotoneraRegla">
+                    <div style="float: right">
+                        <button id="btnGuardar"  class="btn_abm" onclick="return clikGuardar()" >
+                            Guardar</button>
+                        &nbsp;
+                    </div>
+                    <div style="float: right">
+                        <button id="btnEliminar" class="btn_abm" onclick="return clikEliminar()">
+                            Eliminar</button>
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>

@@ -59,6 +59,65 @@ namespace coreBasic.Codigo
         {
             get { return "ASC"; }
         }
-
+        public static int cACCION_ALTA
+        {
+            get { return 1; }
+        }
+        public static int cACCION_MODIFICACION
+        {
+            get { return 2; }
+        }
+        public static int cACCION_CAMBIOESTADO
+        {
+            get { return 3; }
+        }
+        public static int cACCION_CAMBIOCONTRASEÑA
+        {
+            get { return 4; }
+        }
+        public static int cACCION_CAMBIOORDEN
+        {
+            get { return 5; }
+        }
+        public static int cACCION_ISPUBLICAR
+        {
+            get { return 6; }
+        }
+        public static int cACCION_ELIMINAR
+        {
+            get { return 7; }
+        }
+        public static int cESTADO_SINESTADO
+        {
+            get { return 1; }
+        }
+        public static int cESTADO_ACTIVO
+        {
+            get { return 2; }
+        }
+        public static int cESTADO_INACTIVO
+        {
+            get { return 3; }
+        }
+        public static int cESTADO_SINLEER
+        {
+            get { return 4; }
+        }
+        public static int cESTADO_LEIDO
+        {
+            get { return 5; }
+        }
+        public static string cESTADO_STRING_SINESTADO
+        {
+            get { return "Sin Estado"; }
+        }
+        public static string cESTADO_STRING_ACTIVO
+        {
+            get { return "Activo"; }
+        }
+        public static string cESTADO_STRING_INACTIVO
+        {
+            get { return "Inactivo"; }
+        }
     }
 }

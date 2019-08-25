@@ -19,7 +19,7 @@ namespace coreBasic.Controllers
         {
             return View();
         }
-        
+
         [HttpGet]
         public IActionResult RolIndex()
         {
@@ -68,7 +68,7 @@ namespace coreBasic.Controllers
             {
                 return NotFound();
             }
-            
+
             return View(oRol);
         }
 
@@ -83,7 +83,7 @@ namespace coreBasic.Controllers
                 {
                     return NotFound();
                 }
-             
+
                 return RedirectToAction("RolIndex");
             }
 
@@ -93,7 +93,7 @@ namespace coreBasic.Controllers
 
         [HttpGet]
         public IActionResult RolDelete(int id)
-        {   
+        {
             var oRol = adminService.GetOneRol(id);
 
             if (oRol == null)
@@ -110,6 +110,121 @@ namespace coreBasic.Controllers
             adminService.DeleteRol(id);
 
             return RedirectToAction("RolIndex");
+        }
+        [HttpGet]
+        public IActionResult ReglaIndex()
+        {
+            //adminService.GetAllRegla()
+            return View();
+        }
+
+        public string CargarArbolCombo()
+        {
+            return coreBasic.Codigo.Serializador.SerializarAJson(adminService.GetAllReglaPorNivel());
+        }
+        public List<bool> IsNombreOPalabraNoSeRepite(int pIdRegla, string pNombre, string pPalabra)
+        {
+            List<bool> resultado = new List<bool>();
+            List<cRegla> listaRegla = adminService.GetAllRegla();
+            resultado.Add(listaRegla.Where(x => x.rgl_Descripcion == pNombre && x.rgl_codRegla != pIdRegla).Count() > 0 ? false : true);
+            resultado.Add(listaRegla.Where(x => x.rgl_PalabraClave == pPalabra.ToLower() && x.rgl_codRegla != pIdRegla).Count() > 0 ? false : true);
+            return resultado;
+        }
+        public bool InsertarRegla(string pDescripcion, string pPalabra, bool pAgregar, bool pEditar, bool pEliminar, int pIdReglaPadre)
+        {
+            cRegla oRegla = new cRegla();
+            oRegla.id = 0;
+            oRegla.rgl_Descripcion = pDescripcion;
+            oRegla.rgl_PalabraClave = pPalabra;
+            oRegla.rgl_IsAgregarSoporta = pAgregar;
+            oRegla.rgl_IsEditarSoporta = pEditar;
+            oRegla.rgl_IsEliminarSoporta = pEliminar;
+            oRegla.rgl_codReglaPadre = pIdReglaPadre;
+            oRegla = adminService.AddRegla(oRegla);
+            return oRegla.id > 0;
+        }
+        public bool ActualizarRegla(int pIdRegla, string pDescripcion, string pPalabra, bool pAgregar, bool pEditar, bool pEliminar, int pIdReglaPadre)
+        {
+            cRegla oRegla = new cRegla();
+            oRegla.id = pIdRegla;
+            oRegla.rgl_Descripcion = pDescripcion;
+            oRegla.rgl_PalabraClave = pPalabra;
+            oRegla.rgl_IsAgregarSoporta = pAgregar;
+            oRegla.rgl_IsEditarSoporta = pEditar;
+            oRegla.rgl_IsEliminarSoporta = pEliminar;
+            oRegla.rgl_codReglaPadre = pIdReglaPadre;
+            oRegla = adminService.EditRegla(pIdRegla, oRegla);
+            return oRegla.id > 0;
+        }
+        public cListaCheck RecuperarReglaRaiz()
+        {
+            cListaCheck resultado = null;
+            List<cRegla> listaRegla = adminService.GetAllRegla().Where(x => x.rgl_codReglaPadre == null).ToList();
+            if (listaRegla.Count > 0)
+            {
+                return ConvertToListaCheck(listaRegla[0]);
+            }
+            return resultado;
+        }
+
+        public cListaCheck RecuperarReglaPorId(int pIdRegla)
+        {
+            cListaCheck resultado = null;
+            cRegla regla = adminService.GetOneRegla(pIdRegla);
+            if (regla != null)
+            {
+                return ConvertToListaCheck(regla);
+            }
+            return resultado;
+        }
+        public bool EliminarRegla(int pIdRegla)
+        {
+            bool resultado = false;
+            try
+            {
+                adminService.DeleteRegla(pIdRegla);
+                resultado = true;
+            }
+            catch
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
+        private cListaCheck ConvertToListaCheck(cRegla pRegla)
+        {
+            cListaCheck resultado = new cListaCheck();
+            resultado.id = pRegla.rgl_codRegla;
+            resultado.descripcion = pRegla.rgl_Descripcion;
+            resultado.palabra = pRegla.rgl_PalabraClave;
+            resultado.idPadreRegla = pRegla.rgl_codReglaPadre;
+            if ((bool)pRegla.rgl_IsAgregarSoporta)
+            {
+                resultado.checkAgregar = 1;
+            }
+            else
+            {
+                resultado.checkAgregar = 0;
+            }
+            if ((bool)pRegla.rgl_IsEditarSoporta)
+            {
+                resultado.checkEditar = 1;
+            }
+            else
+            {
+                resultado.checkEditar = 0;
+            }
+            if ((bool)pRegla.rgl_IsEliminarSoporta)
+            {
+                resultado.checkEliminar = 1;
+            }
+            else
+            {
+                resultado.checkEliminar = 0;
+            }
+            List<cRegla> listaReglaParametro = adminService.GetAllRegla();
+            resultado.listaIdHijas = adminService.GetAllIdReglasHijas(pRegla.rgl_codRegla, listaReglaParametro);
+            return resultado;
         }
     }
 }

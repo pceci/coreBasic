@@ -11,6 +11,11 @@ namespace coreBasic.Business
           new cRol() { id = 2, rol_Nombre = "Mundo"},
           new cRol() { id = 3, rol_Nombre = "Lala" },
       });
+        public static List<cRegla> DataSourceRegla = new List<cRegla>(new[] {
+          new cRegla() { id = 1, rgl_Descripcion= "Raiz" , rgl_PalabraClave= "raiz",rgl_IsAgregarSoporta = true,rgl_IsEditarSoporta=true,rgl_IsEliminarSoporta=true,rgl_codReglaPadre=null },
+          new cRegla() { id =2, rgl_Descripcion= "Gestión rol" , rgl_PalabraClave= "gestionrol",rgl_IsAgregarSoporta = true,rgl_IsEditarSoporta=true,rgl_IsEliminarSoporta=true,rgl_codReglaPadre=1 },
+          new cRegla() { id = 3, rgl_Descripcion= "Gestión regla" , rgl_PalabraClave= "gestionregla",rgl_IsAgregarSoporta = true,rgl_IsEditarSoporta=true,rgl_IsEliminarSoporta=true,rgl_codReglaPadre=1 }
+      });
         public cRol GetOneRol(int id) => DataSourceRol.Where(m => m.id == id).FirstOrDefault();
 
         public List<cRol> GetAllRol() { return DataSourceRol; }
@@ -34,6 +39,47 @@ namespace coreBasic.Business
         public void DeleteRol(int id)
         {
             DataSourceRol.RemoveAll(c => c.id == id);
+        }
+        public cRegla GetOneRegla(int id) => DataSourceRegla.Where(m => m.id == id).FirstOrDefault();
+        public List<cRegla> GetAllRegla() { return DataSourceRegla; }
+        public cRegla AddRegla(cRegla regla)
+        {
+            regla.id = DataSourceRegla.Count() + 1;
+            DataSourceRegla.Add(regla);
+            return regla;
+        }
+        public cRegla EditRegla(int id, cRegla regla)
+        {
+            if (id != regla.id)
+            {
+                return null;
+            }
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_Descripcion = regla.rgl_Descripcion;
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_PalabraClave = regla.rgl_PalabraClave;
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_IsAgregarSoporta = regla.rgl_IsAgregarSoporta;
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_IsEditarSoporta = regla.rgl_IsEditarSoporta;
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_IsEliminarSoporta = regla.rgl_IsEliminarSoporta;
+            DataSourceRegla.FirstOrDefault(x => x.id == id).rgl_codReglaPadre = regla.rgl_codReglaPadre;
+            return DataSourceRegla.FirstOrDefault(x => x.id == id);
+        }
+
+        public void DeleteRegla(int id)
+        {
+            DataSourceRegla.RemoveAll(c => c.id == id);
+        }
+        public List<cListaCheck> GetAllReglaPorNivel()
+        {
+            List<cRegla> listaReglaParametro = DataSourceRegla;
+            List<cListaCheck> listaResultado = new List<cListaCheck>();
+            // cargar detalle
+            return listaResultado;
+        }
+        public List<int> GetAllIdReglasHijas(int pIdRegla, List<cRegla> pListaRegla)
+        {
+            List<int> l = new List<int>();
+            l.Add(1);
+            l.Add(2);
+            return l;
         }
     }
 }

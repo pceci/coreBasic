@@ -5,13 +5,13 @@ using coreBasic.Business;
 
 namespace netCoreWorkshop.API
 {
-    [Route("/api/rol")]
+    [Route("/api/roles")]
     [ApiController]
-    public class ArticlesApiController : ControllerBase
+    public class RolesApiController : ControllerBase
     {
         private readonly IAdminService adminService;
 
-        public ArticlesApiController(IAdminService adminService)
+        public RolesApiController(IAdminService adminService)
         {
             this.adminService = adminService;
         }
