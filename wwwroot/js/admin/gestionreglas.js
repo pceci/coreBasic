@@ -35,8 +35,8 @@ function LimpiarControlesSinComboReglaElegir() {
 }
 function CargarCombo() {
     var strHTMLcombo = '';
-    var strHTMLcomboInicioContenida = '<select id="comboReglasContenidas"  class="anchoControlRegla" >';
-    var strHTMLcomboInicioElegir = '<select id="comboReglasElegir" class="anchoControlRegla" onchange="clickComboElegir()">';
+    var strHTMLcomboInicioContenida = '<select id="comboReglasContenidas"   class="form-control"  >';
+    var strHTMLcomboInicioElegir = '<select id="comboReglasElegir"  class="form-control"  onchange="clickComboElegir()">';
     if (varIsAgregar) {
         strHTMLcomboInicioElegir += "<option value=\'" + "0" + "\'>";
         strHTMLcomboInicioElegir += "<div >" + "<<( Nueva Regla )>>" + "</div>";
@@ -59,7 +59,7 @@ function CargarCombo() {
         document.getElementById('divCombo').innerHTML = strHTMLcomboInicioContenida + strHTMLcombo;
         $("#btnEliminar").prop( "disabled", true );
     } else {
-        document.getElementById('divCombo').innerHTML = "<select id=/'comboReglasContenidas/' class=/'anchoControlRegla/'  >" + obtenerRaizOptiom() + "</select>";
+        document.getElementById('divCombo').innerHTML = "<select id=/'comboReglasContenidas/' class=/'form-control/'  >" + obtenerRaizOptiom() + "</select>";
         RecuperarReglaRaiz();
         $("#btnGuardar").prop( "disabled", true );
         $("#btnEliminar").prop( "disabled", true );
@@ -135,7 +135,7 @@ function cargarComboContenidoModificar(pIdRegla) {
     }
 
     var strHTMLcombo = '';
-    var strHTMLcomboInicioContenida = '<select id="comboReglasContenidas"  class="anchoControlRegla" >';
+    var strHTMLcomboInicioContenida = '<select id="comboReglasContenidas"  class="form-control" >';
     if (!isRaiz) {
         for (var i = 0; i < listaArbolParaCombo.length; i++) {
             listaArbolParaCombo[i].isGraficada = false;

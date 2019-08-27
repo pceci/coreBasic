@@ -1,27 +1,4 @@
-@{
-    ViewData["Title"] = "Admin";
-}
-@section Scripts{
- <script src="~/js/admin/gestionreglas.js?n=4" type="text/javascript"></script>
- }
-<h2>Regla</h2>
-    <div id="divVentanaMensajes" class="alert alert-info" role="alert">
-
-        <p id="pMensaje">
-        </p>
-        <br />
-    </div>
-     
-@{
-    string resultado = string.Empty;
-    string strListaChecks = ViewBag.ListaTodasReglasPorNivel;
-     if (strListaChecks != null)
-     {
-           resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(strListaChecks) + "\" />";
-     }
-     WriteLiteral(resultado);
-}
- <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-6">
             <div class="form-group">
@@ -57,7 +34,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <h5><u>Acciones:</u></h5>
+            <u>Acciones:</u>
         </div>
     </div>
     <div class="row">
@@ -75,10 +52,8 @@
         <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasEliminar" /></div>
     </div>
     <div class="row">
-        <div class="col-2"> <button id="btnGuardar" class="btn btn-primary" onclick="return clikGuardar()">
-                Guardar</button>
-                </div>
-                <div class="col-2"></div><button id="btnEliminar" class="btn btn-danger" onclick="return clikEliminar()">
+        <div class="col-6"> <button id="btnGuardar" class="btn btn-primary" onclick="return clikGuardar()">
+                Guardar</button><button id="btnEliminar" class="btn btn-danger" onclick="return clikEliminar()">
                 Eliminar</button></div>
     </div>
 </div>
