@@ -11,13 +11,19 @@
         </p>
         <br />
     </div>
+     
 @{
     string resultado = string.Empty;
-     List<coreBasic.Entities.cListaCheck> listaChecks = coreBasic.Codigo.capaAdmin.RecuperarTodasReglasPorNivel(); 
+    string strListaChecks = ViewBag.ListaTodasReglasPorNivel;
+     if (strListaChecks != null)
+     {
+           resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(strListaChecks) + "\" />";
+     }
+     <!-- List<coreBasic.Entities.cListaCheck> listaChecks = coreBasic.Codigo.capaAdmin.RecuperarTodasReglasPorNivel(); 
      if (listaChecks != null)
      {
            resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(coreBasic.Codigo.Serializador.SerializarAJson( listaChecks)) + "\" />";
-     }
+     } -->
      WriteLiteral(resultado);
 }
     <div class="contenedorGeneralRegla">

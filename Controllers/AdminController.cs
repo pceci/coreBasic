@@ -114,7 +114,7 @@ namespace coreBasic.Controllers
         [HttpGet]
         public IActionResult ReglaIndex()
         {
-            //adminService.GetAllRegla()
+            ViewBag.ListaTodasReglasPorNivel = CargarArbolCombo();
             return View();
         }
 
