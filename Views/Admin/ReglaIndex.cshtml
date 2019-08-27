@@ -2,7 +2,7 @@
     ViewData["Title"] = "Admin";
 }
 @section Scripts{
- <script src="~/js/admin/gestionreglas.js?n=2" type="text/javascript"></script>
+ <script src="~/js/admin/gestionreglas.js?n=3" type="text/javascript"></script>
  }
 <h2>Regla</h2>
     <div id="divVentanaMensajes" class="divVentanaMensajesRegla">
@@ -19,11 +19,6 @@
      {
            resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(strListaChecks) + "\" />";
      }
-     <!-- List<coreBasic.Entities.cListaCheck> listaChecks = coreBasic.Codigo.capaAdmin.RecuperarTodasReglasPorNivel(); 
-     if (listaChecks != null)
-     {
-           resultado += "<input type=\"hidden\" id=\"hiddenListaTodasReglasPorNivel\" value=\"" + System.Net.WebUtility.HtmlEncode(coreBasic.Codigo.Serializador.SerializarAJson( listaChecks)) + "\" />";
-     } -->
      WriteLiteral(resultado);
 }
     <div class="contenedorGeneralRegla">

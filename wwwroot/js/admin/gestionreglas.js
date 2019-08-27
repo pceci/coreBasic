@@ -27,11 +27,11 @@ function clickCerrarMensajes() {
 function LimpiarControlesSinComboReglaElegir() {
     $("#txtNombreReglaInput").val('');
     $("#txtPalabraClaveInput").val('');
-    $('#txtPalabraClaveInput').removeAttr('disabled');
-    $("#CheckBoxSoportadasAgregar").attr('checked', false);
-    $("#CheckBoxSoportadasEditar").attr('checked', false);
-    $("#CheckBoxSoportadasEliminar").attr('checked', false);
-    $("#comboReglasContenidas").attr('selectedIndex', 0);
+    $('#txtPalabraClaveInput').prop( "disabled", false );
+    $("#CheckBoxSoportadasAgregar").prop('checked', false);
+    $("#CheckBoxSoportadasEditar").prop('checked', false);
+    $("#CheckBoxSoportadasEliminar").prop('checked', false);
+    $("#comboReglasContenidas").prop('selectedIndex',  0);
 }
 function CargarCombo() {
     var strHTMLcombo = '';
@@ -57,12 +57,12 @@ function CargarCombo() {
     strHTMLcombo += '</select>';
     if (varIsAgregar) {
         document.getElementById('divCombo').innerHTML = strHTMLcomboInicioContenida + strHTMLcombo;
-        $("#btnEliminar").attr('disabled', 'disabled');
+        $("#btnEliminar").prop( "disabled", true );
     } else {
         document.getElementById('divCombo').innerHTML = "<select id=/'comboReglasContenidas/' class=/'anchoControlRegla/'  >" + obtenerRaizOptiom() + "</select>";
         RecuperarReglaRaiz();
-        $("#btnGuardar").attr('disabled', 'disabled');
-        $("#btnEliminar").attr('disabled', 'disabled');
+        $("#btnGuardar").prop( "disabled", true );
+        $("#btnEliminar").prop( "disabled", true );
     }
     document.getElementById('divComboRegla').innerHTML = strHTMLcomboInicioElegir + strHTMLcombo;
 
@@ -82,7 +82,7 @@ function clickComboElegir() {
         RecuperarReglaPorId(idReglaSeleccionada);
     } else {
         //        $('#txtPalabraClaveInput').removeAttr('disabled');
-        $("#btnEliminar").attr('disabled', 'disabled');
+        $("#btnEliminar").prop( "disabled", true );
     }
 }
 function OnCallBackRecuperarReglaPorId(args) {
@@ -90,35 +90,35 @@ function OnCallBackRecuperarReglaPorId(args) {
     if (args != null) {
         $("#txtNombreReglaInput").val(args.descripcion);
         $("#txtPalabraClaveInput").val(args.palabra);
-        $('#txtPalabraClaveInput').attr('disabled', 'disabled');
+        $('#txtPalabraClaveInput').prop( "disabled", true );
         if (args.checkAgregar == 0) {
-            $("#CheckBoxSoportadasAgregar").attr('checked', false);
+            $("#CheckBoxSoportadasAgregar").prop('checked', false);
         } else {
-            $("#CheckBoxSoportadasAgregar").attr('checked', true);
+            $("#CheckBoxSoportadasAgregar").prop('checked', true);
         }
         if (args.checkEditar == 0) {
-            $("#CheckBoxSoportadasEditar").attr('checked', false);
+            $("#CheckBoxSoportadasEditar").prop('checked', false);
         } else {
-            $("#CheckBoxSoportadasEditar").attr('checked', true);
+            $("#CheckBoxSoportadasEditar").prop('checked', true);
         }
         if (args.checkEliminar == 0) {
-            $("#CheckBoxSoportadasEliminar").attr('checked', false);
+            $("#CheckBoxSoportadasEliminar").prop('checked', false);
         } else {
-            $("#CheckBoxSoportadasEliminar").attr('checked', true);
+            $("#CheckBoxSoportadasEliminar").prop('checked', true);
         }
         if (varIsEliminar) {
             if (args.listaIdHijas.length > 0) {
-                $("#btnEliminar").attr('disabled', 'disabled');
+                $("#btnEliminar").prop( "disabled", true );
             } else {
-                $("#btnEliminar").removeAttr('disabled');
+                $("#btnEliminar").prop( "disabled", false );
             }
         } else {
-            $("#btnEliminar").attr('disabled', 'disabled');
+            $("#btnEliminar").prop( "disabled", true );
         }
         if (varIsEditar) {
-            $("#btnGuardar").removeAttr('disabled');
+            $("#btnGuardar").prop( "disabled", false );
         } else {
-            $("#btnGuardar").attr('disabled', 'disabled');
+            $("#btnGuardar").prop( "disabled", true );
         }
     }
 }
