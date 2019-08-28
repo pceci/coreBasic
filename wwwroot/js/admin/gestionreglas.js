@@ -365,13 +365,18 @@ function OnCallBackCargarArbolCombo(args) {
     CargarCombo();
 }
 function clikEliminar() {
-    if (varIsEliminar) {
+    $('#myModalEliminar').modal();
+  /*  if (varIsEliminar) {
         if (confirm('¿Desea eliminar la regla?')) {
             EliminarRegla($("#comboReglasElegir").val());
         }
     } else {
         alert('No tiene permiso de eliminar regla');
-    }
+    }*/
+    return false;
+}
+function onclickEliminarRegla() {
+    EliminarRegla($("#comboReglasElegir").val());
     return false;
 }
 function OnCallBackEliminarRegla(args) {
