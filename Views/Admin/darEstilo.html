@@ -1,60 +1,29 @@
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label id="lblRegla" for="comboReglasElegir">Regla:</label>
-                <div id="divComboRegla">
-                </div>
-            </div>
-        </div>
+<!-- inicio navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label id="lblNombreRegla" for="txtNombreReglaInput">Descripción:</label>
-                <input type="text" id="txtNombreReglaInput" class="form-control" maxlength="255" />
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label id="lblPalabraClave" for="txtPalabraClaveInput">Clave:</label>
-                <input type="text" id="txtPalabraClaveInput" class="form-control" maxlength="50" />
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label id="lblContenida" for="comboReglasContenidas">Contenida en:</label>
-                <div id='divCombo'>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <u>Acciones:</u>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3"> <label id="lblActiva" for="CheckBoxSoportadasActiva">Activa</label></div>
-        <div class="col-3"> <label id="lblAgregar" for="CheckBoxSoportadasAgregar">Agregar</label></div>
-        <div class="col-3"> <label id="lblEditar" for="CheckBoxSoportadasEditar"> Editar</label></div>
-        <div class="col-3"><label id="lblEliminar" for="CheckBoxSoportadasEliminar">Eliminar</label></div>
-    </div>
-    <div class="row">
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasActiva" disabled="disabled"
-                checked="checked" />
-        </div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasAgregar" /></div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasEditar" /></div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasEliminar" /></div>
-    </div>
-    <div class="row">
-        <div class="col-6"> <button id="btnGuardar" class="btn btn-primary" onclick="return clikGuardar()">
-                Guardar</button><button id="btnEliminar" class="btn btn-danger" onclick="return clikEliminar()">
-                Eliminar</button></div>
-    </div>
+</nav>
+<!-- inicio alert -->
+<div class="alert alert-success" role="alert">
+    This is a success alert—check it out!
 </div>
-</div>
+<!-- fin alert -->
