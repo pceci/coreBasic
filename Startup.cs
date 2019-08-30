@@ -34,6 +34,7 @@ namespace coreBasic
             services.AddTransient<IAdminService, AdminServiceSql>();
 
             coreBasic.Codigo.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
+            
         }
     }
 }
