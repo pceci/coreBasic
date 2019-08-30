@@ -12,7 +12,7 @@
 <!-- inicio navbar -->
 @{
     Microsoft.AspNetCore.Routing.RouteValueDictionary rv = ViewContext.RouteData.Values;
-  string page = rv.ToArray()[1].Value.ToString();
+    string page = rv.ToArray()[1].Value.ToString();
     string classRol = "";
     string classRegla = "";
     string strController = page;
@@ -57,8 +57,11 @@
     </div>
 </nav>
 <!-- inicio alert -->
-<div id="divAlertaGenerico" class="alert alert-success" role="alert">
-   
+<div id="alertGeneric" class="alert alert-success alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+   <div id="alertGenericContent"></div>
 </div>
 <!-- fin alert -->
         @RenderBody()
