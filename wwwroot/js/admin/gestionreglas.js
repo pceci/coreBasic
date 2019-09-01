@@ -22,7 +22,7 @@ jQuery(document).ready(function () {
 
 });
 function clickCerrarMensajes() {
-    document.getElementById('divVentanaMensajes').style.display = 'none';
+    alertGenericClose();
 }
 function LimpiarControlesSinComboReglaElegir() {
     $("#txtNombreReglaInput").val('');
@@ -68,7 +68,7 @@ function CargarCombo() {
 
 }
 function clickComboElegir() {
-    document.getElementById('divVentanaMensajes').style.display = 'none';
+    alertGenericClose();
     LimpiarControlesSinComboReglaElegir();
     var idReglaSeleccionada = $("#comboReglasElegir").val();
     var CodigoPadreReglaSeleccionada = cargarComboContenidoModificar(idReglaSeleccionada);
@@ -267,8 +267,7 @@ function ValidarReglaParaModificar(pIdRegla) {
         strHtmlMensaje += "<p>" + "No hay regla raiz" + "</p>";
     }
     if (strHtmlMensaje != '') {
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
+        alertDanger(strHtmlMensaje);
     } else {
         IsNombreOPalabraNoSeRepite(pIdRegla, String($("#txtNombreReglaInput").val()), String($("#txtPalabraClaveInput").val()));
     }
@@ -279,11 +278,9 @@ function OnCallBackIsNombreOPalabraNoSeRepiteModificar(args) {
         strHtmlMensaje += "<p>" + "Descripción no puede repetirse" + "</p>";
     }
     if (strHtmlMensaje != '') {
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
-
+        alertDanger(strHtmlMensaje);
     } else {
-        $('#divVentanaMensajes').css('display', 'none');
+        alertGenericClose();
         ActualizarRegla($("#comboReglasElegir").val(), $("#txtNombreReglaInput").val(), String($("#txtPalabraClaveInput").val()), $("#CheckBoxSoportadasAgregar").is(':checked'), $("#CheckBoxSoportadasEditar").is(':checked'), $("#CheckBoxSoportadasEliminar").is(':checked'), $("#comboReglasContenidas").val());
     }
 
@@ -296,8 +293,7 @@ function OnCallBackActualizarRegla(args) {
     else {
         var strHtmlMensaje = '';
         strHtmlMensaje += "<p>" + "No se pudo actualizar la regla en el sistema" + "</p>";
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
+        alertDanger(strHtmlMensaje);
     }
 }
 function OnFailActualizarRegla(ex) {
@@ -324,8 +320,7 @@ function ValidarRegla() {
     }
 
     if (strHtmlMensaje != '') {
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
+        alertDanger(strHtmlMensaje);
     } else {
         IsNombreOPalabraNoSeRepite(0, String($("#txtNombreReglaInput").val()), String($("#txtPalabraClaveInput").val()));
     }
@@ -340,11 +335,9 @@ function OnCallBackIsNombreOPalabraNoSeRepite(args) {
         strHtmlMensaje += "<p>" + "Palabra clave no puede repetirse" + "</p>";
     }
     if (strHtmlMensaje != '') {
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
-
+        alertDanger(strHtmlMensaje);
     } else {
-        $('#divVentanaMensajes').css('display', 'none');
+        alertGenericClose();
         InsertarRegla($("#txtNombreReglaInput").val(), $("#txtPalabraClaveInput").val(), $("#CheckBoxSoportadasAgregar").is(':checked'), $("#CheckBoxSoportadasEditar").is(':checked'), $("#CheckBoxSoportadasEliminar").is(':checked'), $("#comboReglasContenidas").val());
     }
 }
@@ -356,8 +349,7 @@ function OnCallBackInsertarRegla(args) {
     else {
         var strHtmlMensaje = '';
         strHtmlMensaje += "<p>" + "No se pudo grabar en el sistema" + "</p>";
-        $('#pMensaje').html(strHtmlMensaje);
-        $('#divVentanaMensajes').show("slow");
+        alertDanger(strHtmlMensaje);
     }
 }
 function OnCallBackCargarArbolCombo(args) {
