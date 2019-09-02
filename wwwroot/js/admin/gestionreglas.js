@@ -252,7 +252,7 @@ function clikGuardar() {
         if (varIsEditar) {
             ValidarReglaParaModificar(idReglaSeleccionada);
         } else {
-            alert('No tiene permiso para modificar');
+            alertDanger('No tiene permiso para modificar');
         }
     }
     return false;
@@ -298,7 +298,7 @@ function OnCallBackActualizarRegla(args) {
 }
 function OnFailActualizarRegla(ex) {
     $('#txtPalabraClaveInput').removeAttr('disabled');
-    alert(String(ex));
+    alertDanger(String(ex));
 }
 function ValidarRegla() {
     var strHtmlMensaje = '';
@@ -376,6 +376,6 @@ function OnCallBackEliminarRegla(args) {
         LimpiarControlesSinComboReglaElegir();
         CargarArbolCombo();
     } else {
-        alert('No se pudo eliminar');
+        alertDanger('No se pudo eliminar');
     }
 }

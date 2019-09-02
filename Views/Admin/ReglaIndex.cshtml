@@ -16,7 +16,7 @@
 }
  <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label id="lblRegla" for="comboReglasElegir">Regla:</label>
                 <div id="divComboRegla">
@@ -25,13 +25,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label id="lblNombreRegla" for="txtNombreReglaInput">Descripción:</label>
                 <input type="text" id="txtNombreReglaInput" class="form-control" maxlength="255" />
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label id="lblPalabraClave" for="txtPalabraClaveInput">Clave:</label>
                 <input type="text" id="txtPalabraClaveInput" class="form-control" maxlength="50" />
@@ -40,7 +40,7 @@
     </div>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label id="lblContenida" for="comboReglasContenidas">Contenida en:</label>
                 <div id='divCombo'>
@@ -54,20 +54,20 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3"> <label id="lblActiva" for="CheckBoxSoportadasActiva">Activa</label></div>
-        <div class="col-3"> <label id="lblAgregar" for="CheckBoxSoportadasAgregar">Agregar</label></div>
-        <div class="col-3"> <label id="lblEditar" for="CheckBoxSoportadasEditar"> Editar</label></div>
-        <div class="col-3"><label id="lblEliminar" for="CheckBoxSoportadasEliminar">Eliminar</label></div>
+        <div class="col-3 col-md-1"> <label id="lblActiva" for="CheckBoxSoportadasActiva">Activa</label></div>
+        <div class="col-3 col-md-1"> <label id="lblAgregar" for="CheckBoxSoportadasAgregar">Agregar</label></div>
+        <div class="col-3 col-md-1"> <label id="lblEditar" for="CheckBoxSoportadasEditar"> Editar</label></div>
+        <div class="col-3 col-md-1"><label id="lblEliminar" for="CheckBoxSoportadasEliminar">Eliminar</label></div>
     </div>
     <div class="row">
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasActiva" disabled="disabled"
+        <div class="col-3 col-md-1"> <input type="checkbox" id="CheckBoxSoportadasActiva" disabled="disabled"
                 checked="checked" />
         </div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasAgregar" /></div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasEditar" /></div>
-        <div class="col-3"> <input type="checkbox" id="CheckBoxSoportadasEliminar" /></div>
+        <div class="col-3 col-md-1"> <input type="checkbox" id="CheckBoxSoportadasAgregar" /></div>
+        <div class="col-3 col-md-1"> <input type="checkbox" id="CheckBoxSoportadasEditar" /></div>
+        <div class="col-3 col-md-1"> <input type="checkbox" id="CheckBoxSoportadasEliminar" /></div>
     </div>
-    <div class="row">
+    <div class="row justify-content-end">
         <div class="col-2"> <button id="btnGuardar" class="btn btn-primary" onclick="return clikGuardar()">
                 Guardar</button>
                 </div>
