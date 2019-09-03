@@ -357,14 +357,7 @@ function OnCallBackCargarArbolCombo(args) {
     CargarCombo();
 }
 function clikEliminar() {
-    $('#myModalEliminar').modal();
-  /*  if (varIsEliminar) {
-        if (confirm('¿Desea eliminar la regla?')) {
-            EliminarRegla($("#comboReglasElegir").val());
-        }
-    } else {
-        alert('No tiene permiso de eliminar regla');
-    }*/
+    mensaje_confirmar('Información', '<p>¿Desea eliminar la regla?</p>', 'Eliminar','Cancelar' , 'return onclickEliminarRegla();', 'return false;');
     return false;
 }
 function onclickEliminarRegla() {

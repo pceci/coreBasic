@@ -74,12 +74,15 @@ function EliminarRegla(pIdRegla) {
         data: { pIdRegla: pIdRegla },
         success:
             function (response) {
+                cerrar_mensaje_confirmar();
                 OnCallBackEliminarRegla(response);
             },
         failure: function (response) {
+            cerrar_mensaje_confirmar();
             OnFail(response);
         },
         error: function (response) {
+            cerrar_mensaje_confirmar();
             OnFail(response);
         }
     });

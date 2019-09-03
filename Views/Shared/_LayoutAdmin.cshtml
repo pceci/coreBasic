@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="container body-content">
+<!-- inicio modal -->
+<div id="ContentModal">
+
+</div>
+<!-- fin modal -->        
 <!-- inicio navbar -->
 @{
     Microsoft.AspNetCore.Routing.RouteValueDictionary rv = ViewContext.RouteData.Values;
@@ -71,8 +76,8 @@
     <script src="~/js/li/popper.min.js"></script>
     <script src="~/js/li/bootstrap.min.js"></script>  
     <script src="~/js/libreria.js?n=0"></script>  
-    <script src="~/js/admin/mensaje.js?n=0"></script> 
-    <script src="~/js/admin/ajaxAdmin.js?n=0"></script>  
+    <script src="~/js/admin/mensaje.js?n=1"></script> 
+    <script src="~/js/admin/ajaxAdmin.js?n=1"></script>  
     @RenderSection("scripts", required: false)
 </body>
 </html>
