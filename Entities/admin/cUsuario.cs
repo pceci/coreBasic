@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace coreBasic.Entities
 {
-    public class cUsuario
+    public class cUsuario:IEntityBase
     {
+        public int id { get { return usu_codigo; } set { usu_codigo = value; } }
         public int usu_codigo { get; set; }
         public int usu_codRol { get; set; }
         public int? usu_codCliente { get; set; }

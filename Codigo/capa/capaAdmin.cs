@@ -100,9 +100,6 @@ namespace coreBasic.Codigo
         {
             BaseDataAccess db = new BaseDataAccess(Helper.getConnectionStringSQL);
             List<SqlParameter> l = new List<SqlParameter>();
-            // SqlDataReader dr = db.GetDataReader("seg.spRecuperarTodasReglasPorNiveles", l);
-            // DataTable dt = new DataTable();
-            // dt.Load(dr);
             return db.GetDataTable("seg.spRecuperarTodasReglasPorNiveles", l);
         }
         public static List<cRol> RecuperarTodasRoles(string pFiltro)

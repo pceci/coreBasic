@@ -16,6 +16,12 @@ namespace coreBasic.Business
           new cRegla() { id =2, rgl_Descripcion= "Gestión rol" , rgl_PalabraClave= "gestionrol",rgl_IsAgregarSoporta = true,rgl_IsEditarSoporta=true,rgl_IsEliminarSoporta=true,rgl_codReglaPadre=1 },
           new cRegla() { id = 3, rgl_Descripcion= "Gestión regla" , rgl_PalabraClave= "gestionregla",rgl_IsAgregarSoporta = true,rgl_IsEditarSoporta=true,rgl_IsEliminarSoporta=true,rgl_codReglaPadre=1 }
       });
+
+        public static List<cUsuario> DataSourceUsuario = new List<cUsuario>(new[] {
+          new cUsuario() { id = 1, usu_codRol = 1, usu_nombre= "Juan" , usu_apellido= "Perez", usu_mail = "juan@mail.com",usu_login="resl" ,usu_codCliente=1,usu_estado  =1},
+          new cUsuario() { id = 2, usu_codRol = 2, usu_nombre= "Pedro" , usu_apellido= "Lopez", usu_mail = "pedro@mail.com",usu_login="pedro" ,usu_estado  =1},
+          new cUsuario() { id = 3, usu_codRol = 1, usu_nombre= "Lisa" , usu_apellido= "Rodriguez", usu_mail = "lisa@mail.com",usu_login="lista" ,usu_codCliente=2,usu_estado  =1}
+      });
         public cRol GetOneRol(int id) => DataSourceRol.Where(m => m.id == id).FirstOrDefault();
 
         public List<cRol> GetAllRol() { return DataSourceRol; }
@@ -80,6 +86,32 @@ namespace coreBasic.Business
             l.Add(1);
             l.Add(2);
             return l;
+        }
+        public cUsuario GetOneUsuario(int id) => DataSourceUsuario.Where(m => m.id == id).FirstOrDefault();
+        public List<cUsuario> GetAllUsuario() { return DataSourceUsuario; }
+        public cUsuario AddUsuario(cUsuario usuario)
+        {
+            usuario.id = DataSourceRegla.Count() + 1;
+            DataSourceUsuario.Add(usuario);
+            return usuario;
+        }
+        public cUsuario EditUsuario(int id, cUsuario usuario)
+        {
+            if (id != usuario.id)
+            {
+                return null;
+            }
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_apellido = usuario.usu_apellido;
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_nombre = usuario.usu_nombre;
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_login = usuario.usu_login;
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_mail = usuario.usu_mail;
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_estado = usuario.usu_estado;
+            DataSourceUsuario.FirstOrDefault(x => x.id == id).usu_observacion = usuario.usu_observacion;
+            return DataSourceUsuario.FirstOrDefault(x => x.id == id);
+        }
+        public void DeleteUsuario(int id)
+        {
+            DataSourceUsuario.RemoveAll(c => c.id == id);
         }
     }
 }

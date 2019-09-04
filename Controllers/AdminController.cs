@@ -226,5 +226,75 @@ namespace coreBasic.Controllers
             resultado.listaIdHijas = adminService.GetAllIdReglasHijas(pRegla.rgl_codRegla, listaReglaParametro);
             return resultado;
         }
+           [HttpGet]
+        public IActionResult UsuarioIndex()
+        {
+            return View(adminService.GetAllUsuario());
+        }
+        [HttpGet]
+        public IActionResult UsuarioDetails(int id)
+        {
+            var o = adminService.GetOneUsuario(id);
+            if (o == null)
+            {
+                return NotFound();
+            }
+            return View(o);
+        }
+        [HttpGet]
+        public IActionResult UsuarioCreate()
+        {
+            return View(new cUsuario());
+        }
+        [HttpPost]
+        public IActionResult UsuarioCreate(cUsuario pUsuario)
+        {
+            if (ModelState.IsValid)
+            {
+                adminService.AddUsuario(pUsuario);
+                return RedirectToAction("UsuarioIndex");
+            }
+            return View(pUsuario);
+        }
+        [HttpGet]
+        public IActionResult UsuarioEdit(int id)
+        {
+            var o = adminService.GetOneUsuario(id);
+            if (o == null)
+            {
+                return NotFound();
+            }
+            return View(o);
+        }
+        [HttpPost]
+        public IActionResult UsuarioEdit(int id, cUsuario pUsuario)
+        {
+            if (ModelState.IsValid)
+            {
+                var updated = adminService.EditUsuario(id, pUsuario);
+                if (updated == null)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction("UsuarioIndex");
+            }
+            return View(pUsuario);
+        }
+        [HttpGet]
+        public IActionResult UsuarioDelete(int id)
+        {
+            var o = adminService.GetOneUsuario(id);
+            if (o == null)
+            {
+                return NotFound();
+            }
+            return View(o);
+        }
+        [HttpPost]
+        public IActionResult UsuarioDeleteConfirmed(int id)
+        {
+            adminService.DeleteUsuario(id);
+            return RedirectToAction("UsuarioIndex");
+        }
     }
 }

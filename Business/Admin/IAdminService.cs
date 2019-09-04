@@ -23,6 +23,11 @@ namespace coreBasic.Business
         void DeleteRegla(int id);
 
         List<cListaCheck> GetAllReglaPorNivel();
-        List<int>  GetAllIdReglasHijas(int pIdRegla, List<cRegla> pListaRegla);
+        List<int> GetAllIdReglasHijas(int pIdRegla, List<cRegla> pListaRegla);
+        cUsuario GetOneUsuario(int id);
+        List<cUsuario> GetAllUsuario();
+        cUsuario AddUsuario(cUsuario usuario);
+        cUsuario EditUsuario(int id, cUsuario usuario);
+        void DeleteUsuario(int id);
     }
 }

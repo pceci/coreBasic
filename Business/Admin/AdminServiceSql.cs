@@ -73,5 +73,35 @@ namespace coreBasic.Business
         {
             return capaAdmin.RecuperarTodosIdReglasHijas(pIdRegla, pListaRegla);
         }
+        public cUsuario GetOneUsuario(int id)
+        {
+            return capaAdmin.RecuperarUsuarioPorId(id);
+        }
+        public List<cUsuario> GetAllUsuario()
+        {
+            return capaAdmin.RecuperarTodosUsuarios(string.Empty);
+        }
+        public cUsuario AddUsuario(cUsuario usuario)
+        {
+            usuario.usu_codigo = capaAdmin.InsertarActualizarUsuario(usuario.usu_codigo, usuario.usu_codRol, usuario.usu_codCliente, usuario.usu_nombre, usuario.usu_apellido, usuario.usu_mail, usuario.usu_login, usuario.usu_pswDesencriptado, usuario.usu_observacion, null);
+            if (usuario.usu_codigo < 0)
+                return null;
+            return usuario;
+        }
+        public cUsuario EditUsuario(int id, cUsuario usuario)
+        {
+            if (id != usuario.id)
+            {
+                return null;
+            }
+            usuario.usu_codigo = capaAdmin.InsertarActualizarUsuario(usuario.usu_codigo, usuario.usu_codRol, usuario.usu_codCliente, usuario.usu_nombre, usuario.usu_apellido, usuario.usu_mail, usuario.usu_login, usuario.usu_pswDesencriptado, usuario.usu_observacion, null);
+            if (usuario.usu_codigo < 0)
+                return null;
+            return usuario;
+        }
+        public void DeleteUsuario(int id)
+        {
+            capaAdmin.EliminarUsuario(id);
+        }
     }
 }
