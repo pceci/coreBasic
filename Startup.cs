@@ -24,7 +24,7 @@ namespace coreBasic
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{controller=admin}/{action=RolIndex}/{id?}");
+                template: "{controller=admin}/{action=Index}/{id?}");
             });
         }
         // This method gets called by the runtime. Use this method to add services to the container.

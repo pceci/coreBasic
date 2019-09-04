@@ -761,32 +761,7 @@ WHERE usu_codigo = @usu_codigo
 		BEGIN	
 --BEGIN TRANSACTION
 --BEGIN TRY
-UPDATE seg.HistorialProductosBuscados 
-SET hpb_codUsuario = NULL
-WHERE hpb_codUsuario = @usu_codigo
 
-UPDATE seg.HistorialBusquedaPalabras
-SET hbp_codUsuario = NULL
-WHERE hbp_codUsuario = @usu_codigo
-
-UPDATE seg.HistorialProductosBuscados
-SET hpb_codUsuario= NULL
-WHERE  hpb_codUsuario = @usu_codigo
-
-UPDATE seg.CarritoTransfersDetalles
-SET ctd_codUsuario = NULL
-WHERE  ctd_codUsuario = @usu_codigo
-
-UPDATE seg.ProductosDeCarrito
-SET lcp_codUsuario = NULL
-WHERE lcp_codUsuario = @usu_codigo
-
-UPDATE seg.CarritoDiferidoDetalle
-SET rdd_codUsuario = NULL
-WHERE rdd_codUsuario = @usu_codigo
-
-DELETE FROM seg.tblUsuarioSinPermisosIntranet
-WHERE usp_codUsuario = @usu_codigo
 
 DELETE seg.tblUsuarioLog
 WHERE ulg_codUsuario = @usu_codigo
@@ -813,53 +788,33 @@ SET   usu_psw = pwdEncrypt (@usu_psw),
       usu_codAccion = @usu_codAccion
 WHERE usu_codigo = @usu_codigo
 
---COMMIT TRANSACTION 
---END TRY
---BEGIN CATCH
---ROLLBACK TRANSACTION 
---END CATCH		
-		END	
---ELSE IF @accion = 'ESCONTRASEÑACORRECTA'
---		BEGIN	
-----BEGIN TRANSACTION
-----BEGIN TRY
-
---SELECT usu_codigo  FROM seg.tbl_usuarios
--- WHERE  usu_codigo = @usu_codigo and PWDCOMPARE (@usu_psw , usu_psw) = 1 
- 
-
-----COMMIT TRANSACTION 
-----END TRY
-----BEGIN CATCH
-----ROLLBACK TRANSACTION 
-----END CATCH		
---		END					
+END					
 	ELSE IF @accion = 'SELECT'
 		BEGIN
 			IF @usu_codigo <> 0
 				BEGIN
-					SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente,cli_nombre
+					SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente
 					FROM seg.tbl_usuarios
 					INNER JOIN  seg.tblRol on rol_codRol	= usu_codRol	
-					LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente
+					--LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente
 					WHERE usu_codigo = @usu_codigo
 				END
 			ELSE
 				BEGIN
 				IF @filtro <> ''
 					BEGIN
-					SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente,cli_nombre
+					SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente
 					FROM seg.tbl_usuarios
 					INNER JOIN  seg.tblRol on rol_codRol	= usu_codRol
-					LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente		
+					--LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente		
 					WHERE  usu_nombre  LIKE   '%' + @filtro + '%'  OR usu_apellido LIKE  '%' + @filtro + '%'  OR usu_mail LIKE  '%' + @filtro  + '%' OR rol_Nombre LIKE  '%' + @filtro  + '%' 
 					END
 				ELSE
 					BEGIN
-						SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente,cli_nombre
+						SELECT  usu_codigo,usu_codRol,rol_Nombre,usu_nombre + ' ' + usu_apellido as NombreYapellido  ,usu_nombre,usu_apellido,usu_login,usu_mail,usu_pswDesencriptado,usu_observacion,usu_estado,usu_codCliente
 					    FROM seg.tbl_usuarios
 					    INNER JOIN  seg.tblRol on rol_codRol	= usu_codRol
-					    LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente	
+					   -- LEFT JOIN tbl_Clientes on cli_codigo = usu_codCliente	
 						--ORDER BY NombreYapellido  ASC
 					END					
 				END
