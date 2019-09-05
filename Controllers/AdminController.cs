@@ -226,7 +226,7 @@ namespace coreBasic.Controllers
             resultado.listaIdHijas = adminService.GetAllIdReglasHijas(pRegla.rgl_codRegla, listaReglaParametro);
             return resultado;
         }
-           [HttpGet]
+        [HttpGet]
         public IActionResult UsuarioIndex()
         {
             return View(adminService.GetAllUsuario());
@@ -234,6 +234,11 @@ namespace coreBasic.Controllers
         [HttpGet]
         public IActionResult UsuarioDetails(int id)
         {
+            ViewBag.comboRoles = adminService.GetAllRol().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Text = x.rol_Nombre,
+                Value = x.rol_codRol.ToString()
+            });
             var o = adminService.GetOneUsuario(id);
             if (o == null)
             {
@@ -244,6 +249,11 @@ namespace coreBasic.Controllers
         [HttpGet]
         public IActionResult UsuarioCreate()
         {
+            ViewBag.comboRoles = adminService.GetAllRol().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Text = x.rol_Nombre,
+                Value = x.rol_codRol.ToString()
+            });
             return View(new cUsuario());
         }
         [HttpPost]
@@ -259,6 +269,11 @@ namespace coreBasic.Controllers
         [HttpGet]
         public IActionResult UsuarioEdit(int id)
         {
+            ViewBag.comboRoles = adminService.GetAllRol().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Text = x.rol_Nombre,
+                Value = x.rol_codRol.ToString()
+            });
             var o = adminService.GetOneUsuario(id);
             if (o == null)
             {
@@ -283,6 +298,11 @@ namespace coreBasic.Controllers
         [HttpGet]
         public IActionResult UsuarioDelete(int id)
         {
+            ViewBag.comboRoles = adminService.GetAllRol().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Text = x.rol_Nombre,
+                Value = x.rol_codRol.ToString()
+            });
             var o = adminService.GetOneUsuario(id);
             if (o == null)
             {

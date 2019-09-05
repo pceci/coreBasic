@@ -121,3 +121,18 @@ function RecuperarReglaRaiz() {
         }
     });
 }
+function getRoles(pOnCallBack) {
+    $.ajax({
+        type: "GET",
+        url: "/api/roles",
+        success: function (response) {
+            eval(pOnCallBack + '(response)');
+        },
+        failure: function (response) {
+            OnFail(response);
+        },
+        error: function (response) {
+            OnFail(response);
+        }
+    });
+}
