@@ -26,6 +26,7 @@
     string classRol = "";
     string classRegla = "";
     string classUsuario = "";
+    string classReglaRol = "";
     string strController = page;
     switch (strController)
     {
@@ -46,6 +47,9 @@
         case "UsuarioDelete":                 
             classUsuario = " active ";
             break;
+       case "ReglaRol":                 
+            classReglaRol = " active ";
+            break;            
         default:
             break;
     }
@@ -67,7 +71,10 @@
             </li>
             <li class="nav-item @{ WriteLiteral(classRegla);}">
                 <a class="nav-link" href="@Url.Action("ReglaIndex", "Admin")">Regla</a>
-            </li>           
+            </li>         
+            <li class="nav-item @{ WriteLiteral(classReglaRol);}">
+                <a class="nav-link" href="@Url.Action("ReglaRol", "Admin")">Regla Rol</a>
+            </li>               
             <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
             </li>

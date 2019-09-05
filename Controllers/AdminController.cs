@@ -316,5 +316,10 @@ namespace coreBasic.Controllers
             adminService.DeleteUsuario(id);
             return RedirectToAction("UsuarioIndex");
         }
+        [HttpGet]
+        public IActionResult ReglaRol()
+        {
+            return View(adminService.GetAllReglaPorNivel());
+        }
     }
 }

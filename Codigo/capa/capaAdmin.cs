@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using coreBasic.Entities;
+using System.Xml.Linq;
 
 namespace coreBasic.Codigo
 {
@@ -342,6 +343,54 @@ namespace coreBasic.Codigo
         public static void CambiarContraseñaUsuario(int pIdUsuario, string pConstraseña, int? pIdUsuarioEnSession)
         {
             DataSet dsResultado = GestiónUsuario(pIdUsuario, null, null, null, null, null, null, pConstraseña, null, pIdUsuarioEnSession, Constantes.cACCION_CAMBIOCONTRASEÑA, null, null, Constantes.cSQL_CAMBIOCONTRASEÑA);
+        }
+        public static bool IsGrabarReglaRol(int pIdRol, List<cReglaPorRol> lista)
+        {
+            if (lista != null && lista.Count > 0)
+            {
+                string strXML = string.Empty;
+                strXML += "<Root>";
+                foreach (cReglaPorRol item in lista)
+                {
+                    List<XAttribute> listaAtributos = new List<XAttribute>();
+
+                    listaAtributos.Add(new XAttribute("idRegla", item.idRegla));
+                    listaAtributos.Add(new XAttribute("idRelacionReglaRol", item.idRelacionReglaRol));
+                    listaAtributos.Add(new XAttribute("isActivo", item.isActivo));
+
+                    if (item.isAgregado == null)
+                    {
+
+                    }
+                    else
+                    {
+                        listaAtributos.Add(new XAttribute("isAgregado", item.isAgregado));
+                    }
+                    if (item.isEditado == null)
+                    {
+                    }
+                    else
+                    {
+                        listaAtributos.Add(new XAttribute("isEditado", item.isEditado));
+                    }
+                    if (item.isEliminado == null)
+                    {
+                    }
+                    else
+                    {
+                        listaAtributos.Add(new XAttribute("isEliminado", item.isEliminado));
+                    }
+
+                    XElement nodo = new XElement("Regla", listaAtributos);
+                    strXML += nodo.ToString();
+                }
+                strXML += "</Root>";
+                string parameXML = strXML;
+
+                InsertarActualizarRelacionRolRegla(pIdRol, parameXML);
+                return true;
+            }
+            return false;
         }
         public static string obtenerStringEstado(int pIdEstado)
         {
