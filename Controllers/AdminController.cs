@@ -317,8 +317,9 @@ namespace coreBasic.Controllers
             return RedirectToAction("UsuarioIndex");
         }
         [HttpGet]
-        public IActionResult ReglaRol()
+        public IActionResult ReglaRolIndex()
         {
+            ViewBag.ListaTodasReglasPorNivel =  coreBasic.Codigo.Serializador.SerializarAJson(adminService.GetAllReglaPorNivel());
             return View(adminService.GetAllReglaPorNivel());
         }
     }

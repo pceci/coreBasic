@@ -22,7 +22,7 @@ namespace coreBasic.Entities
         public List<int> listaIdPadre { get; set; }
 
         public List<int> listaIdHijas { get; set; }
-
+       // public List<cListaCheck> listaHijas { get; set; }
         public int Nivel { get; set; }
 
         public bool isGraficada { get; set; }

@@ -9,8 +9,9 @@
     <meta name="country" content="Argentina" />
     <meta name="geography" content="Urquiza 1455 - Rosario - Santa Fe - Argentina" />
     <title>@ViewData["Title"] - NativoSistemas</title>
+    <link rel="stylesheet" href="~/css/li/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/css/li/bootstrap.min.css" >
-    <link rel="stylesheet" href="~/css/admin/admin.css" >
+    <link rel="stylesheet" href="~/css/admin/admin.css?n=1" >
 </head>
 <body>
     <div class="container body-content">
@@ -47,7 +48,7 @@
         case "UsuarioDelete":                 
             classUsuario = " active ";
             break;
-       case "ReglaRol":                 
+       case "ReglaRolIndex":                 
             classReglaRol = " active ";
             break;            
         default:
@@ -73,7 +74,7 @@
                 <a class="nav-link" href="@Url.Action("ReglaIndex", "Admin")">Regla</a>
             </li>         
             <li class="nav-item @{ WriteLiteral(classReglaRol);}">
-                <a class="nav-link" href="@Url.Action("ReglaRol", "Admin")">Regla Rol</a>
+                <a class="nav-link" href="@Url.Action("ReglaRolIndex", "Admin")">Regla Rol</a>
             </li>               
             <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>

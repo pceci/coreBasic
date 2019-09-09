@@ -27,9 +27,15 @@ namespace netCoreWorkshop.API
 
             return Ok(obj);
         }
-
         [HttpGet]
-        public IActionResult Get() => Ok(adminService.GetAllRegla());
+        public IActionResult Get()
+        {
+            if (!string.IsNullOrEmpty( HttpContext.Request.Query["modo"]))
+            {
+                return Ok(adminService.GetAllReglaPorNivel());
+            }
+            return Ok(adminService.GetAllRegla());
+        }
 
         [HttpPost]
         public IActionResult Create([FromBody]cRegla regla)
@@ -47,7 +53,7 @@ namespace netCoreWorkshop.API
         [HttpPut("{id}")]
         public IActionResult Edit(int id, [FromBody]cRegla regla)
         {
-            
+
             if (id != regla.id)
             {
                 return NotFound();
@@ -58,7 +64,7 @@ namespace netCoreWorkshop.API
                 return BadRequest(ModelState);
             }
 
-            var current = adminService.EditRegla( id, regla);
+            var current = adminService.EditRegla(id, regla);
 
             if (current == null)
             {
