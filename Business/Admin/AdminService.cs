@@ -113,5 +113,13 @@ namespace coreBasic.Business
         {
             DataSourceUsuario.RemoveAll(c => c.id == id);
         }
+        public List<cReglaPorRol> GetAllReglasRol(int id)
+        {
+            return new List<cReglaPorRol>();
+        }
+        public bool EditReglasRol(int pIdRol, List<cReglaPorRol> lista)
+        {
+            return true;
+        }
     }
 }

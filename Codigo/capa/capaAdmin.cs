@@ -392,6 +392,61 @@ namespace coreBasic.Codigo
             }
             return false;
         }
+        public static List<cReglaPorRol> RecuperarTodasReglasRolPorIdRol(int pIdRol)
+        {
+            DataTable tablaAcciones = RecuperarTodasAccionesRol(pIdRol);
+            List<cReglaPorRol> l = new List<cReglaPorRol>();
+            foreach (DataRow item in tablaAcciones.Rows)
+            {
+                l.Add(ConvertToReglasRol(item));
+            }
+            return l;
+        }
+        public static cReglaPorRol ConvertToReglasRol(DataRow pItem)
+        {
+            cReglaPorRol acRol = new cReglaPorRol();
+            if (pItem.Table.Columns.Contains("rgl_codRegla") && pItem["rgl_codRegla"] != DBNull.Value)
+            {
+                acRol.idRegla = Convert.ToInt32(pItem["rgl_codRegla"]);
+            }
+            if (pItem.Table.Columns.Contains("rrr_codRelacionRolRegla") && pItem["rrr_codRelacionRolRegla"] != DBNull.Value)
+            {
+                acRol.idRelacionReglaRol = Convert.ToInt32(pItem["rrr_codRelacionRolRegla"]);
+            }
+            if (pItem.Table.Columns.Contains("rrr_IsActivo") && pItem["rrr_IsActivo"] != DBNull.Value)
+            {
+                acRol.isActivo = Convert.ToBoolean(pItem["rrr_IsActivo"]);
+            }
+            else
+            {
+                acRol.isActivo = false;
+            }
+            if (pItem.Table.Columns.Contains("rrr_IsAgregar") && pItem["rrr_IsAgregar"] != DBNull.Value)
+            {
+                acRol.isAgregar = Convert.ToBoolean(pItem["rrr_IsAgregar"]);
+            }
+            else
+            {
+                acRol.isAgregar = false;
+            }
+            if (pItem.Table.Columns.Contains("rrr_IsEditar") && pItem["rrr_IsEditar"] != DBNull.Value)
+            {
+                acRol.isEditar = Convert.ToBoolean(pItem["rrr_IsEditar"]);
+            }
+            else
+            {
+                acRol.isEditar = false;
+            }
+            if (pItem.Table.Columns.Contains("rrr_IsEliminar") && pItem["rrr_IsEliminar"] != DBNull.Value)
+            {
+                acRol.isEliminar = Convert.ToBoolean(pItem["rrr_IsEliminar"]);
+            }
+            else
+            {
+                acRol.isEliminar = false;
+            }
+            return acRol;
+        }
         public static string obtenerStringEstado(int pIdEstado)
         {
             string resultado = string.Empty;

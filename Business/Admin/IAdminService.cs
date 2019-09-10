@@ -29,5 +29,8 @@ namespace coreBasic.Business
         cUsuario AddUsuario(cUsuario usuario);
         cUsuario EditUsuario(int id, cUsuario usuario);
         void DeleteUsuario(int id);
+        List<cReglaPorRol> GetAllReglasRol(int id);
+        bool EditReglasRol(int pIdRol, List<cReglaPorRol> lista);
+
     }
 }
