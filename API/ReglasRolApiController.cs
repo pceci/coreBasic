@@ -2,14 +2,15 @@ using System.Linq;
 using coreBasic.Business;
 using coreBasic.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace netCoreWorkshop.API {
     [Route ("/api/reglas")]
     [ApiController]
-    public class ReglasApiController : ControllerBase {
+    public class ReglasRolApiController : ControllerBase {
         private readonly IAdminService adminService;
 
-        public ReglasApiController (IAdminService adminService) {
+        public ReglasRolApiController (IAdminService adminService) {
             this.adminService = adminService;
         }
 
@@ -24,12 +25,12 @@ namespace netCoreWorkshop.API {
             return Ok (obj);
         }
         [HttpPut ("{id}")]
-        public IActionResult Edit (int id, [FromBody] List<cReglaPorRol> reglasRol) {
+        public IActionResult Edit (int id, [FromBody]List<cReglaPorRol> reglasRol) {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
             }
             var current = adminService.EditReglasRol (id, reglasRol);
-            if (current == null) {
+            if (!current) {
                 return NotFound ();
             }
             return NoContent ();
