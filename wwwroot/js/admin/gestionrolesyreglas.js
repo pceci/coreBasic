@@ -1,4 +1,6 @@
 var listaReglasRol = null;
+var listaRoles = null;
+var listaReglasRolSelecciondo = [];
 
 jQuery(document).ready(function () {
 
@@ -8,10 +10,22 @@ jQuery(document).ready(function () {
             listaReglasRol = null;
         }
     }
+    if (listaRoles == null) {
+        listaRoles = eval('(' + $('#hiddenListaTodosRoles').val() + ')');
+        if (typeof listaRoles == 'undefined') {
+            listaRoles = null;
+        }
+    }
     CargarArbolEnInicio();
-
+    CargarComboRoles();
 
 });
+
+function CargarComboRoles() {
+    if (listaRoles != null) {
+        OnCallBack_getRoles_Combo(listaRoles);
+    }
+}
 
 function CargarArbolEnInicio() {
 
@@ -149,4 +163,190 @@ function BuscarHijos(pIdRegla) {
         }
     }
     return resultado;
+}
+//
+function ClickGuardar() {
+    var listaReglaModificadas = [];
+    for (var i = 0; i < listaReglasRol.length; i++) {
+        var isEncontrado = false;
+        for (var xy = 0; xy < listaReglasRolSelecciondo.length; xy++) {
+            if (listaReglasRol[i].id == listaReglasRolSelecciondo[xy].idRegla) {
+                var isReglaSeModifico = false;
+                var re = new ReglaAGrabar();
+                re.idRelacionReglaRol = listaReglasRolSelecciondo[xy].idRelacionReglaRol;
+                re.idRegla = listaReglasRol[i].id;
+                var ckActivar = document.getElementById("chkActivar_" + String(listaReglasRol[i].id));
+                if (ckActivar != null) {
+                    re.isActivo = ckActivar.checked;
+                    if (ckActivar.checked != listaReglasRolSelecciondo[xy].isActivo) {
+                        isReglaSeModifico = true;
+                    }
+                }
+                //
+                var ckAgregar = document.getElementById("chkAgregar_" + String(listaReglasRol[i].id));
+                if (ckAgregar != null) {
+                    re.isAgregado = ckAgregar.checked;
+                    if (ckAgregar.checked != listaReglasRolSelecciondo[xy].isAgregar) {
+                        isReglaSeModifico = true;
+                    }
+                }
+                else {
+                    re.isAgregado = null;
+                }
+                var ckEditar = document.getElementById("chkEditar_" + String(listaReglasRol[i].id));
+                if (ckEditar != null) {
+                    re.isEditado = ckEditar.checked;
+                    if (ckEditar.checked != listaReglasRolSelecciondo[xy].isEditar) {
+                        isReglaSeModifico = true;
+                    }
+                } else {
+                    re.isEditado = null;
+                }
+                var ckEliminar = document.getElementById("chkEliminar_" + String(listaReglasRol[i].id));
+                if (ckEliminar != null) {
+                    re.isEliminado = ckEliminar.checked;
+                    if (ckEliminar.checked != listaReglasRolSelecciondo[xy].isEliminar) {
+                        isReglaSeModifico = true;
+                    }
+                } else {
+                    re.isEliminado = null;
+                }
+                if (isReglaSeModifico) {
+                    listaReglaModificadas.push(re);
+                }
+                isEncontrado = true;
+                break;
+            } // fin if (listaReglasRol[i].id == listaReglasRolSelecciondo[xy].idRegla) 
+        } // fin for (var xy = 0; xy < listaReglasRolSelecciondo.length; xy++)
+
+        if (!isEncontrado) {
+            var isValeLaPenaGrabar = false;
+            var reNueva = new ReglaAGrabar();
+            reNueva.idRelacionReglaRol = -1;
+            reNueva.idRegla = listaReglasRol[i].id;
+            var ckActivar = document.getElementById("chkActivar_" + String(listaReglasRol[i].id));
+            if (ckActivar != null) {
+                reNueva.isActivo = ckActivar.checked;
+                if (ckActivar.checked) {
+                    isValeLaPenaGrabar = true;
+                }
+            }
+            //
+            var ckAgregar = document.getElementById("chkAgregar_" + String(listaReglasRol[i].id));
+            if (ckAgregar != null) {
+                reNueva.isAgregado = ckAgregar.checked;
+                if (ckAgregar.checked) {
+                    isValeLaPenaGrabar = true;
+                }
+            } else {
+                reNueva.isAgregado = null;
+            }
+            var ckEditar = document.getElementById("chkEditar_" + String(listaReglasRol[i].id));
+            if (ckEditar != null) {
+                reNueva.isEditado = ckEditar.checked;
+                if (ckEditar.checked) {
+                    isValeLaPenaGrabar = true;
+                }
+            } else {
+                reNueva.isEditado = null;
+            }
+            var ckEliminar = document.getElementById("chkEliminar_" + String(listaReglasRol[i].id));
+            if (ckEliminar != null) {
+                reNueva.isEliminado = ckEliminar.checked;
+                if (ckEliminar.checked) {
+                    isValeLaPenaGrabar = true;
+                }
+            } else {
+                reNueva.isEliminado = null;
+            }
+            if (isValeLaPenaGrabar) {
+                listaReglaModificadas.push(reNueva);
+            }
+
+        }
+    } // fin for (var i = 0; i < listaReglasRol.length; i++)
+    // var lal = listaReglaModificadas;
+    if (document.getElementById("cmbRoles").selectedIndex >= 0) {
+        var sValue = document.getElementById("cmbRoles").options[document.getElementById("cmbRoles").selectedIndex].value;
+        //PageMethods.IsGrabarReglaRol(sValue, listaReglaModificadas, OnCallBackIsGrabarReglaRol, OnFail);
+        IsGrabarReglaRol(sValue, listaReglaModificadas);
+    }
+    return false;
+}
+function IsGrabarReglaRol(idRol, listaReglaRol) {
+
+
+}
+function OnCallBackIsGrabarReglaRol(args) {
+    //    alert(String(args));
+}
+function LimpiarReglas() {
+    for (var i = 0; i < listaReglasRol.length; i++) {
+        var ckActivar = document.getElementById("chkActivar_" + String(listaReglasRol[i].id));
+        if (ckActivar != null) {
+            ckActivar.checked = false;
+        }
+        var ckAgregar = document.getElementById("chkAgregar_" + String(listaReglasRol[i].id));
+        if (ckAgregar != null) {
+            ckAgregar.checked = false;
+        }
+        var ckEditar = document.getElementById("chkEditar_" + String(listaReglasRol[i].id));
+        if (ckEditar != null) {
+            ckEditar.checked = false;
+        }
+        var ckEliminar = document.getElementById("chkEliminar_" + String(listaReglasRol[i].id));
+        if (ckEliminar != null) {
+            ckEliminar.checked = false;
+        }
+    }
+}
+function ChangeIndexComboRol() {
+    var sValue = document.getElementById("cmbRoles").options[document.getElementById("cmbRoles").selectedIndex].value;
+    LimpiarReglas();
+    listaReglasRolSelecciondo = [];
+    RecuperarReglasPorRol(sValue);
+}
+
+function RecuperarReglasPorRol(sValue) {
+    getReglasrol(sValue, 'onCallBackRecuperarReglasPorRol');
+}
+function onCallBackRecuperarReglasPorRol(args) {
+    // var listaResultado = eval('(' + args + ')');
+    // listaReglasRolSelecciondo = listaResultado;
+    listaReglasRolSelecciondo = args;
+    if (listaReglasRolSelecciondo.length > 0) {
+        for (var i = 0; i < listaReglasRolSelecciondo.length; i++) {
+
+            var ckActivar = document.getElementById("chkActivar_" + String(listaReglasRolSelecciondo[i].idRegla));
+            if (ckActivar != null) {
+                listaReglasRolSelecciondo[i].isActivoModificado = listaReglasRolSelecciondo[i].isActivo;
+                ckActivar.checked = listaReglasRolSelecciondo[i].isActivo;
+            }
+            var ckAgregar = document.getElementById("chkAgregar_" + String(listaReglasRolSelecciondo[i].idRegla));
+            if (ckAgregar != null) {
+                if (listaReglasRolSelecciondo[i].isAgregar != null) {
+                    listaReglasRolSelecciondo[i].isAgregarModificado = listaReglasRolSelecciondo[i].isAgregar;
+                    ckAgregar.checked = listaReglasRolSelecciondo[i].isAgregar;
+                }
+            }
+            var ckEditar = document.getElementById("chkEditar_" + String(listaReglasRolSelecciondo[i].idRegla));
+            if (ckEditar != null) {
+                if (listaReglasRolSelecciondo[i].isEditar != null) {
+                    listaReglasRolSelecciondo[i].isEditarModificado = listaReglasRolSelecciondo[i].isEditar;
+                    ckEditar.checked = listaReglasRolSelecciondo[i].isEditar;
+                }
+            }
+            var ckEliminar = document.getElementById("chkEliminar_" + String(listaReglasRolSelecciondo[i].idRegla));
+            if (ckEliminar != null) {
+                if (listaReglasRolSelecciondo[i].isEliminar != null) {
+                    listaReglasRolSelecciondo[i].isEliminarModificado = listaReglasRolSelecciondo[i].isEliminar;
+                    ckEliminar.checked = listaReglasRolSelecciondo[i].isEliminar;
+                }
+            }
+        }
+    }
+    // if (varIsEditar) {
+    //     $("#divSectorArbol").removeAttr('disabled');
+    //     $("#btnGuardar").removeAttr('disabled');
+    // }
 }

@@ -92,10 +92,7 @@ namespace coreBasic.Codigo
             BaseDataAccess db = new BaseDataAccess(Helper.getConnectionStringSQL);
             List<SqlParameter> l = new List<SqlParameter>();
             l.Add(db.GetParameter("IdRol", IdRol));
-            SqlDataReader dr = db.GetDataReader("seg.spRecuperarAccionesUsuario", l);
-            DataTable dt = new DataTable();
-            dt.Load(dr);
-            return dt;
+            return db.GetDataTable("seg.spRecuperarAccionesUsuario",l);
         }
         public static DataTable getDataTableRecuperarTodasReglasPorNivel()
         {

@@ -317,10 +317,16 @@ namespace coreBasic.Controllers
             return RedirectToAction("UsuarioIndex");
         }
         [HttpGet]
-        public IActionResult ReglaRolIndex()
+        public IActionResult ReglasRolIndex()
         {
-            ViewBag.ListaTodasReglasPorNivel =  coreBasic.Codigo.Serializador.SerializarAJson(adminService.GetAllReglaPorNivel());
-            return View(adminService.GetAllReglaPorNivel());
+        //  var ddd =   adminService.GetAllReglasRol (1);
+            ViewBag.comboRoles = coreBasic.Codigo.Serializador.SerializarAJson(adminService.GetAllRol().Select(x => new cCombo
+            {
+                nombre = x.rol_Nombre,
+                id = x.rol_codRol
+            }).ToList());
+            ViewBag.ListaTodasReglasPorNivel = coreBasic.Codigo.Serializador.SerializarAJson(adminService.GetAllReglaPorNivel());
+            return View();//adminService.GetAllReglaPorNivel()
         }
     }
 }

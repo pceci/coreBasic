@@ -136,3 +136,19 @@ function getRoles(pOnCallBack) {
         }
     });
 }
+function getReglasrol(id,pOnCallBack) {
+    $.ajax({
+        type: "GET",
+        url: "/api/reglasrol",
+        data: { id: id },
+        success: function (response) {
+            eval(pOnCallBack + '(response)');
+        },
+        failure: function (response) {
+            OnFail(response);
+        },
+        error: function (response) {
+            OnFail(response);
+        }
+    });
+}
