@@ -16,7 +16,6 @@ namespace netCoreWorkshop.API
         {
             this.adminService = adminService;
         }
-
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

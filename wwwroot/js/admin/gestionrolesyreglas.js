@@ -18,7 +18,7 @@ jQuery(document).ready(function () {
     }
     CargarArbolEnInicio();
     CargarComboRoles();
-
+    ChangeIndexComboRol();
 });
 
 function CargarComboRoles() {

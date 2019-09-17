@@ -139,8 +139,7 @@ function getRoles(pOnCallBack) {
 function getReglasrol(id,pOnCallBack) {
     $.ajax({
         type: "GET",
-        url: "/api/reglasrol",
-        data: { id: id },
+        url: "/api/reglasrol/" + id,
         success: function (response) {
             eval(pOnCallBack + '(response)');
         },

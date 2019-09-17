@@ -30,7 +30,10 @@ namespace netCoreWorkshop.API
 
         [HttpGet]
         public IActionResult Get() => Ok(adminService.GetAllRol());
-
+        // public IActionResult Get()
+        // {
+        //     return Ok(adminService.GetAllRol());
+        // }
         [HttpPost]
         public IActionResult Create([FromBody]cRol rol)
         {
@@ -47,7 +50,7 @@ namespace netCoreWorkshop.API
         [HttpPut("{id}")]
         public IActionResult Edit(int id, [FromBody]cRol rol)
         {
-            
+
             if (id != rol.id)
             {
                 return NotFound();
@@ -58,7 +61,7 @@ namespace netCoreWorkshop.API
                 return BadRequest(ModelState);
             }
 
-            var currentRol = adminService.EditRol( id, rol);
+            var currentRol = adminService.EditRol(id, rol);
 
             if (currentRol == null)
             {
