@@ -61,7 +61,7 @@ namespace coreBasic.Codigo
             List<SqlParameter> l = new List<SqlParameter>();
             l.Add(db.GetParameter("rrr_codRol", rrr_codRol));
             l.Add(db.GetParameter("rrr_codRegla", rrr_codRegla));
-            l.Add(db.GetParameter("pXML", pXML));
+            l.Add(db.GetParameter("strXML", pXML));
             l.Add(db.GetParameter("accion", accion));
             DataSet ds = db.GetDataSet("seg.spGestionRelacionRoleRegla", l);
             return ds;
@@ -92,7 +92,7 @@ namespace coreBasic.Codigo
             BaseDataAccess db = new BaseDataAccess(Helper.getConnectionStringSQL);
             List<SqlParameter> l = new List<SqlParameter>();
             l.Add(db.GetParameter("IdRol", IdRol));
-            return db.GetDataTable("seg.spRecuperarAccionesUsuario",l);
+            return db.GetDataTable("seg.spRecuperarAccionesUsuario", l);
         }
         public static DataTable getDataTableRecuperarTodasReglasPorNivel()
         {

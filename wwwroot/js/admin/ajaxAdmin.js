@@ -151,3 +151,56 @@ function getReglasrol(id,pOnCallBack) {
         }
     });
 }
+function getReglasrol(id,pOnCallBack) {
+    $.ajax({
+        type: "GET",
+        url: "/api/reglasrol/" + id,
+        success: function (response) {
+            eval(pOnCallBack + '(response)');
+        },
+        failure: function (response) {
+            OnFail(response);
+        },
+        error: function (response) {
+            OnFail(response);
+        }
+    });
+}
+function  putReglasrol(id,listReglasRol){
+    var url = '/api/reglasrol/' + id;
+
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+xhr.open("PUT", url, true);
+xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+// var data = {};
+// data.firstname = "John2";
+// data.lastname  = "Snow2";
+var json = JSON.stringify(listReglasRol);
+
+// Setup our listener to process completed requests
+xhr.onload = function () {
+
+	// Process our return data
+	if (xhr.status >= 200 && xhr.status < 300) {
+		// What do when the request is successful
+        // alert('success!', xhr);
+        alertSuccess('Se grabo correctamente.');
+	} else {
+		// What do when the request fails
+        // alert('The request failed!');
+        OnFail(xhr);
+	}
+
+	// Code that should run regardless of the request status
+	// alert('This always runs...');
+};
+
+// Create and send a GET request
+// The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+// The second argument is the endpoint URL
+// xhr.open('PUT', '/api/reglasrol/' + id);
+xhr.send(json);
+
+}

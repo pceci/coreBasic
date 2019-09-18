@@ -2,6 +2,24 @@ var listaReglasRol = null;
 var listaRoles = null;
 var listaReglasRolSelecciondo = [];
 
+function ReglaAGrabar() {
+    this.idRelacionReglaRol = 0;
+    this.idRegla = 0;
+    this.isActivo = false;
+    this.isAgregado = false;
+    this.isEditado = false;
+    this.isEliminado = false;
+    this.isAgregar= function () {
+        return isAgregado;
+      };
+    this.isEditar= function () {
+        return isEditado;
+      };
+    this.isEliminar= function () {
+        return isEliminado;
+      };
+}
+
 jQuery(document).ready(function () {
 
     if (listaReglasRol == null) {
@@ -274,7 +292,7 @@ function ClickGuardar() {
     return false;
 }
 function IsGrabarReglaRol(idRol, listaReglaRol) {
-
+    putReglasrol(idRol,listaReglaRol);
 
 }
 function OnCallBackIsGrabarReglaRol(args) {
@@ -301,6 +319,7 @@ function LimpiarReglas() {
     }
 }
 function ChangeIndexComboRol() {
+    alertGenericClose();
     var sValue = document.getElementById("cmbRoles").options[document.getElementById("cmbRoles").selectedIndex].value;
     LimpiarReglas();
     listaReglasRolSelecciondo = [];

@@ -35,10 +35,13 @@ namespace netCoreWorkshop.API
             {
                 return BadRequest(ModelState);
             }
-            var current = adminService.EditReglasRol(id, reglasRol);
-            if (!current)
+            if (reglasRol != null && reglasRol.Count > 0)
             {
-                return NotFound();
+                var current = adminService.EditReglasRol(id, reglasRol);
+                // if (!current)
+                // {
+                //     return NotFound();
+                // }
             }
             return NoContent();
         }

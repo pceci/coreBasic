@@ -84,7 +84,7 @@ namespace coreBasic.Business {
             capaAdmin.EliminarUsuario (id);
         }
         public List<cReglaPorRol> GetAllReglasRol (int id) {
-            return capaAdmin.RecuperarTodasReglasRolPorIdRol (id);
+            return capaAdmin.RecuperarRelacionRolReglasPorRol (id);
         }
         public bool EditReglasRol (int pIdRol, List<cReglaPorRol> lista) {
             return capaAdmin.IsGrabarReglaRol (pIdRol, lista);
