@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using coreBasic.Business;
 using coreBasic.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace coreBasic.Controllers
 {
+    // [Authorize]
     public class AdminController : Controller
     {
         private readonly IAdminService adminService;
