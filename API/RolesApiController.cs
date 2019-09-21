@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using coreBasic.Entities;
 using System.Linq;
 using coreBasic.Business;
+using Microsoft.AspNetCore.Authorization;
 
 namespace netCoreWorkshop.API
 {
     [Route("/api/roles")]
+    [Authorize]
     [ApiController]
     public class RolesApiController : ControllerBase
     {

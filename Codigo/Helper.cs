@@ -8,7 +8,11 @@ namespace coreBasic.Codigo
 
         public static string getConnectionStringSQL
         {
-            set;get;
+            set; get;
+        }
+        public static byte[] keyJWT
+        {
+            set; get;
         }
     }
 }
