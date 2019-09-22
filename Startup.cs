@@ -55,7 +55,8 @@ namespace coreBasic
             services.AddTransient<IAdminService, AdminServiceSql>();
 
             coreBasic.Codigo.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
-            coreBasic.Codigo.Helper.keyJWT = keyJWT;
+            coreBasic.Codigo.Helper.getPathSiteWeb = Configuration.GetValue<string>("PathSiteWeb");
+            coreBasic.Codigo.Helper.getPathLog = Configuration.GetValue<string>("PathLog");
         }
     }
 }

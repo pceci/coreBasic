@@ -2,10 +2,10 @@ namespace coreBasic.Codigo
 {
     public static class Constantes
     {
-        public static string cArchivo_LogErrorTxt
-        {
-            get { return @"LogError.txt"; }
-        }
+        // public static string cArchivo_LogErrorTxt
+        // {
+        //     get { return @"LogError.txt"; }
+        // }
         public static string cSQL_INSERT
         {
             get { return "INSERT"; }

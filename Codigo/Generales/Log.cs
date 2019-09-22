@@ -9,7 +9,9 @@ namespace coreBasic.Codigo
     {
         public static void LogErrorFile(string pantalla, string mensaje)
         {
-            Log.saveInFile("fecha: " + DateTime.Now.ToString() + " - pantalla: " + pantalla + " - mensaje :" + mensaje, Constantes.cArchivo_LogErrorTxt);
+            DateTime now=   DateTime.Now;
+            string nombreFile = now.Year.ToString("0000")  + now.Month.ToString("00") + now.Day.ToString("00") + ".txt";
+            Log.saveInFile("fecha: " + now.ToString() + " - pantalla: " + pantalla + " - mensaje :" + mensaje, nombreFile);
         }
         public static void LogError(MethodBase method, Exception pException, DateTime pFechaActual, params object[] values)
         {
@@ -67,7 +69,7 @@ namespace coreBasic.Codigo
         {
             try
             {
-                string path = "";// HttpContext.Current.Server.MapPath(@"../" + Constantes.cArchivo_log + @"/");
+                string path =  coreBasic.Codigo.Helper.getPathSiteWeb + coreBasic.Codigo.Helper.getPathLog +"\\";//"";// HttpContext.Current.Server.MapPath(@"../" + Constantes.cArchivo_log + @"/");
                 if (Directory.Exists(path) == false)
                 {
                     Directory.CreateDirectory(path);

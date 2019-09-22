@@ -14,5 +14,13 @@ namespace coreBasic.Codigo
         {
             set; get;
         }
+        public static string getPathSiteWeb
+        {
+            set; get;
+        }
+        public static string getPathLog
+        {
+            set; get;
+        }
     }
 }
