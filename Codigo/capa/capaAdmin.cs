@@ -25,7 +25,7 @@ namespace coreBasic.Codigo
             l.Add(db.GetParameter("err_StackTrace", err_StackTrace));
             l.Add(db.GetParameter("err_fecha", err_fecha));
             l.Add(db.GetParameter("err_tipo", err_tipo));
-            int result = db.ExecuteNonQuery("seg.spError", l);
+            int result = db.ExecuteNonQuery_forError("seg.spError", l);
             return result > 0;
         }
         public static DataSet GestiónRol(int? rol_codRol, string rol_Nombre, string filtro, string accion)
@@ -277,9 +277,12 @@ namespace coreBasic.Codigo
             List<cRegla> listaReglaParametro = RecuperarTodasReglas(string.Empty);
             List<cListaCheck> listaResultado = new List<cListaCheck>();
             DataTable tabla = getDataTableRecuperarTodasReglasPorNivel();
-            for (int i = 0; i < tabla.Rows.Count; i++)
+            if (tabla != null)
             {
-                listaResultado.Add(ConvertListaCheck(tabla.Rows[i], listaReglaParametro));
+                for (int i = 0; i < tabla.Rows.Count; i++)
+                {
+                    listaResultado.Add(ConvertListaCheck(tabla.Rows[i], listaReglaParametro));
+                }
             }
             return listaResultado;
         }

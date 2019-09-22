@@ -61,7 +61,35 @@ namespace coreBasic.Codigo
 
             return parameterObject;
         }
+        public int ExecuteNonQuery_forError(string procedureName, List<SqlParameter> parameters, CommandType commandType = CommandType.StoredProcedure)
+        {
 
+            int returnValue = -1;
+
+            // try
+            // {
+
+                using (SqlConnection connection = this.GetConnection())
+                {
+                    //
+                    SqlCommand cmd = this.GetCommand(connection, procedureName, commandType);
+                    if (parameters != null && parameters.Count > 0)
+                    {
+                        cmd.Parameters.AddRange(parameters.ToArray());
+                    }
+
+                    returnValue = cmd.ExecuteNonQuery();
+                }
+            // }
+            // catch (Exception ex)
+            // {
+            //     Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, procedureName, parameters, commandType);
+            //     //LogException("Failed to ExecuteNonQuery for " + procedureName, ex, parameters);
+            //     //throw;
+            // }
+
+            return returnValue;
+        }
         public int ExecuteNonQuery(string procedureName, List<SqlParameter> parameters, CommandType commandType = CommandType.StoredProcedure)
         {
 
