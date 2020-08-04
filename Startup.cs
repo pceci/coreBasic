@@ -52,7 +52,7 @@ namespace coreBasic
                 };
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddTransient<IAdminService, AdminServiceSql>();
+            services.AddTransient<IAdminService, AdminService>();
 
             coreBasic.Codigo.Helper.getConnectionStringSQL = Configuration.GetConnectionString("ConnectionSQL");
             coreBasic.Codigo.Helper.getPathSiteWeb = Configuration.GetValue<string>("PathSiteWeb");

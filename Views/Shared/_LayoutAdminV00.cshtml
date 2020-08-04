@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Nativo Sistemas" />
+    <meta name="distribution" content="Global" />
+    <meta name="city" content="Rosario" />
+    <meta name="country" content="Argentina" />
+    <meta name="geography" content="Urquiza 1455 - Rosario - Santa Fe - Argentina" />
+    <title>@ViewData["Title"] - NativoSistemas</title>
+    <link rel="stylesheet" href="~/css/admin/adminV00.css?n=0" >
+</head>
+<body>
+
+    <main>
+        <header><img src="../img/logo-nativo1.svg" alt="NativoSistemas" class="headerLogo"></header>
+@{
+    Microsoft.AspNetCore.Routing.RouteValueDictionary rv = ViewContext.RouteData.Values;
+    string page = rv.ToArray()[1].Value.ToString();
+    string classRol = "";
+    string classRegla = "";
+    string classUsuario = "";
+    string classReglaRol = "";
+    string strController = page;
+    switch (strController)
+    {
+        case "RolIndex":
+        case "RolCreate":
+        case "RolDelete":
+        case "RolDetails":
+        case "RolEdit":                 
+            classRol = " active ";
+            break;
+        case "ReglaIndex":
+            classRegla = " active ";
+            break;
+        case "UsuarioIndex":
+        case "UsuarioDetails":
+        case "UsuarioCreate":
+        case "UsuarioEdit":
+        case "UsuarioDelete":                 
+            classUsuario = " active ";
+            break;
+       case "ReglasRolIndex":                 
+            classReglaRol = " active ";
+            break;            
+        default:
+            break;
+    }
+
+}
+<nav>
+
+        <ul  class="horizontal">
+            <li class="nav-item @{ WriteLiteral(classUsuario);}">
+                <a class="nav-link" href="@Url.Action("UsuarioIndex", "Admin")">Usuario</a>
+            </li>             
+            <li class="nav-item @{ WriteLiteral(classRol);}">
+                <a class="nav-link" href="@Url.Action("RolIndex", "Admin")">Rol </a>
+            </li>
+            <li class="nav-item @{ WriteLiteral(classRegla);}">
+                <a class="nav-link" href="@Url.Action("ReglaIndex", "Admin")">Regla</a>
+            </li>         
+            <li class="nav-item @{ WriteLiteral(classReglaRol);}">
+                <a class="nav-link" href="@Url.Action("ReglasRolIndex", "Admin")">Regla Rol</a>
+            </li>               
+        </ul>
+ 
+</nav>
+          
+        <section>
+            <div class="divSection">
+
+              @RenderBody()
+
+            </div>
+
+        </section>
+
+        <footer><a href="http://www.nativosistemas.com"  target="_blank" >www.nativosistemas.com</a></footer>
+    </main>
+    
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

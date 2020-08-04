@@ -1,0 +1,96 @@
+html,
+body {
+    margin: 0rem;
+    padding: 0rem;
+}
+body{
+    font-family: Cambria,Georgia,serif; 
+}
+
+main {
+    /*color: gainsboro;*/
+
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 6rem 3rem 1fr 1rem;
+    grid-template-areas:
+        "my-header"
+        "my-nav"
+        "my-section"
+        "my-footer"
+}
+
+header {
+    grid-area: my-header;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    grid-area: my-nav;
+    display: flex;
+    justify-content: center;
+}
+nav .active>.nav-link{
+    color: rgba(0,0,0,.9);
+}
+ul.horizontal {
+    width: 100vw;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0.0625rem solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+ul.horizontal li {
+    float: left;
+}
+
+ul.horizontal li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 0.87rem 1rem;
+    text-decoration: none;
+}
+
+.divSection {
+    width: 100vw;
+    min-height: 90vh;
+    background-color: #f8f9fa;
+    /*background-color: salmon;*/
+}
+
+section {
+    grid-area: my-section;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    grid-area: my-footer;
+    text-align: center;    
+}
+.headerLogo {
+    height: 6rem;
+}
+
+@media (min-width: 37.5rem) and (max-width: 62.5rem) {}
+
+@media (min-width: 62.56rem) {
+
+    .divSection {
+        max-width: 64rem;
+        width: 100vw;
+
+    }
+
+    .horizontal {
+        max-width: 64rem;
+        width: 100vw;
+    }
+}
